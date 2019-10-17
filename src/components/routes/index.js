@@ -10,7 +10,7 @@ import LoginView from './LoginView';
 import RegisterView from './RegisterView';
 import MainScreen from "../../screens/main/MainScreen";
 import Splash from "../../screens/main/Splash";
-
+import SideMenuScreen from "../../screens/side-menu/SideMenuScreen";
 
 
 export default routes = {
@@ -18,7 +18,8 @@ export default routes = {
   'App.Login': LoginView,
   'App.Register': RegisterView,
   'MainScreen':MainScreen,
-  'Splash':Splash
+  'Splash':Splash,
+  "SideMenuScreen":SideMenuScreen
 
 }
 

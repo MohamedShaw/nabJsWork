@@ -355,6 +355,8 @@ class Navigation {
   };
 
   static openMenu = () => {
+    console.log("^^^^^^^^^^^^^^^^^^^");
+    
     if (Navigation.menuDirection === "right") {
       NativeNavigation.mergeOptions(
         `MAIN_SIDE_MENU${Navigation.menuComponentId}`,

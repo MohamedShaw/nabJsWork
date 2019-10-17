@@ -9,18 +9,18 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import ScreenComponent from "../_base/screen-component";
-// import Header from "../../components/general/Header";
+import Header from "../../components/general/Header";
 // import WisdomSection from "../../components/main/WisdomSection";
 // import CategoryListView from "../../components/main/CategoryListView";
 // import CategoryScreen from "../category/CategoryScreen";
-// import PatternBackground from "../../components/general/PatternBackground";
+import PatternBackground from "../../components/general/PatternBackground";
 // import Search from "../../components/general/Search";
 // import MainStore from "../../strores/MainStore";
 import { observer } from "mobx-react";
 // import Drawer from 'react-native-drawer'
 import SideMenuScreen from "../../../src/screens/side-menu/SideMenuScreen";
 import Navigation from '../../common/Navigation';
-// import DrawerComponent from "../../components/general/DrawerComponent";
+import DrawerComponent from "../../components/general/DrawerComponent";
 
 
 
@@ -32,13 +32,13 @@ export default class MainScreen extends ScreenComponent {
 
     _drawer;
 
- 
 
-    componentDidMount() {
-        // MainStore.share.getWisdomRequest();
-        ScreenComponent.drawer = this._drawer;
 
-    }
+    // componentDidMount() {
+    //     // MainStore.share.getWisdomRequest();
+    //     ScreenComponent.drawer = this._drawer;
+
+    // }
 
     onListViewCellClicked = (categoryID, categoryName) => {
         CategoryScreen.push(categoryID, categoryName);
@@ -48,9 +48,12 @@ export default class MainScreen extends ScreenComponent {
 
     render() {
         return (
-            // <DrawerComponent>
-            <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
-                {/* <PatternBackground />
+            <DrawerComponent>
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+                    <PatternBackground />
+                    <Header title={MainScreen.screenTitle} />
+
+                    {/* <PatternBackground />
                     <Header title={MainScreen.screenTitle} />
                     <View style={{ alignItems: 'center' }}>
                         <Search />
@@ -60,8 +63,8 @@ export default class MainScreen extends ScreenComponent {
                         data={MainStore.share.getCategory}
                         onListViewCellClicked={this.onListViewCellClicked}
                     /> */}
-            </ScrollView>
-            // </DrawerComponent>
+                </ScrollView>
+            </DrawerComponent>
         );
     }
 }
@@ -69,6 +72,6 @@ export default class MainScreen extends ScreenComponent {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:"red"
+        backgroundColor: "red"
     }
 });

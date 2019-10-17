@@ -34,7 +34,7 @@ export default class Splash extends ScreenComponent {
             Navigation.init("MAIN_STACK", {
                 name: MainScreen.screenID,
                 sideMenu: {
-                    name : <SideMenuScreen />,
+                    name : "SideMenuScreen",
                     rtl:true
                 }
 
