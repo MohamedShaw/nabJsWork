@@ -19,7 +19,7 @@ import Navigation from "../../common/Navigation";
 export default class SoundChannelScreen extends ScreenComponent {
     static screenID = "SoundChannelScreen";
     static screenName = "SoundChannelScreen";
-    static push = () => Navigation.push({ name: SoundChannelScreen.screenID });
+    static push = () => ScreenComponent.navigator.push({screen:SoundChannelScreen.screenID });
     onLoadStart = () => { ScreenComponent.showActivityIndicator() };
     onLoadEnd = () => { ScreenComponent.hideActivityIndicator() };
 

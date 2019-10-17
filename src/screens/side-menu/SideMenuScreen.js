@@ -21,10 +21,10 @@ import ContactUsScreen from "../contact-us/ContactUsScreen";
 import Navigation from "../../common/Navigation";
 
 
-export default class SideMenuScreen extends ScreenComponent {
+export default class SideMenuScreen extends React.Component {
     static screenID = "SideMenuScreen";
     static screenName = "SideMenuScreen";
-    static push = () => Navigation.push({ name: SideMenuScreen.screenID });
+    static push = () => ScreenComponent.navigator.push({screen: SideMenuScreen.screenID });
 
     onMainButtonClicked = () => {
         ScreenComponent.toggleDrawer();

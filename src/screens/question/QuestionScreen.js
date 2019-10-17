@@ -34,7 +34,7 @@ import { observer } from "mobx-react";
 export default class QuestionScreen extends ScreenComponent {
     static screenID = "QuestionScreen";
     static screenName = "QuestionScreen";
-    static push = () =>  Navigation.push({ name: QuestionScreen.screenID });
+    static push = () =>  ScreenComponent.navigator.push({screen: QuestionScreen.screenID });
 
     store = new QuestionStore();
 

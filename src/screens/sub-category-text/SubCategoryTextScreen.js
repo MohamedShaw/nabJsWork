@@ -26,8 +26,7 @@ import AppConstant from "../../constant/Constant";
 export default class SubCategoryTextScreen extends ScreenComponent {
     static screenID = "SubCategoryTextScreen";
     static screenName = "SubCategoryTextScreen";
-    static push = (object, isShowImage) => Navigation.push({
-        screen: SubCategoryTextScreen.screenID,
+    static push = (object, isShowImage) => ScreenComponent.navigator.push({screen: SubCategoryTextScreen.screenID,
         passProps: {object: () => object, isShowImage: isShowImage}
     });
 

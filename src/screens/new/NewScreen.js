@@ -31,7 +31,7 @@ import Navigation from "../../common/Navigation";
 export default class NewScreen extends ScreenComponent {
     static screenID = "NewScreen";
     static screenName = "NewScreen";
-    static push = () => Navigation.push({name: NewScreen.screenID});
+    static push = () => ScreenComponent.navigator.push({screen: NewScreen.screenID});
 
     // store = new NewStore();
 

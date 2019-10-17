@@ -24,7 +24,7 @@ import Navigation from "../../common/Navigation";
 export default class NewFatwaScreen extends ScreenComponent {
     static screenID = "NewFatwaScreen";
     static screenName = "NewFatwaScreen";
-    static push = () =>  Navigation.push({ name: NewFatwaScreen.screenID });
+    static push = () =>  ScreenComponent.navigator.push({screen: NewFatwaScreen.screenID });
     validationManager = new ValidationManager();
     onSendButtonClicked = () => {
 

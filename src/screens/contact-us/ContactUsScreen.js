@@ -23,7 +23,7 @@ import AppConstant from "../../constant/Constant";
 export default class ContactUsScreen extends ScreenComponent {
     static screenID = "ContactUsScreen";
     static screenName = "ContactUsScreen";
-    static push = () =>  Navigation.push({name: ContactUsScreen.screenID});
+    static push = () =>  ScreenComponent.navigator.push({screen: ContactUsScreen.screenID});
     validationManager = new ValidationManager();
     onSendButtonClicked = () => {
         if (this.validationManager.validate()) {

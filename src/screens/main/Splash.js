@@ -15,31 +15,38 @@ import MainScreen from "./MainScreen";
 import { observer } from "mobx-react";
 import SideMenuScreen from "../../../src/screens/side-menu/SideMenuScreen";
 import AppConstant from "../../constant/Constant";
-// import {Navigation} from 'react-native-navigation';
-import Navigation from "../../common/Navigation";
+import {Navigation} from 'react-native-navigation';
 
 
 @observer
 export default class Splash extends ScreenComponent {
     static screenID = "Splash";
-    static push = () => Navigation.push({ name: Splash.screenID });
+    static push = () => ScreenComponent.navigator.push({screen: Splash.screenID });
 
     _drawer;
+
+  
 
     componentDidMount() {
         console.log("*****************");
         
         setTimeout(() => {
-
-            Navigation.init("MAIN_STACK", {
-                name: MainScreen.screenID,
-                sideMenu: {
-                    name : "SideMenuScreen",
-                    rtl:true
-                }
-
-            })
-        }, 500);
+            Navigation.startSingleScreenApp({
+                screen: {
+                    screen: MainScreen.screenID,
+                },
+                drawer: {
+                    right: {
+                        screen: SideMenuScreen.screenID,
+                    },
+                 
+                    
+                },
+                appStyle: {
+                    orientation: 'portrait'
+                },
+            });
+        }, 200);
     }
 
     render() {

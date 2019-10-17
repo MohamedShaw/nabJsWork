@@ -20,7 +20,7 @@ import Navigation from '../../common/Navigation';
 export default class VideoChannelScreen extends ScreenComponent {
     static screenID = "VideoChannelScreen";
     static screenName = "VideoChannelScreen";
-    static push = () => Navigation.push({name: VideoChannelScreen.screenID});
+    static push = () => ScreenComponent.navigator.push({screen:VideoChannelScreen.screenID});
 
 
     onLoadStart = () => {ScreenComponent.showActivityIndicator()};

@@ -28,7 +28,7 @@ import DrawerComponent from "../../components/general/DrawerComponent";
 export default class MainScreen extends ScreenComponent {
     static screenID = "MainScreen";
     static screenTitle = "موسوعة النابلسي للعلوم الإسلامية";
-    static push = () => Navigation.push({ screen: MainScreen.screenID });
+    static push = () => ScreenComponent.navigator.push({screen: MainScreen.screenID });
 
     _drawer;
 

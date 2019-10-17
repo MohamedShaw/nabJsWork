@@ -6,17 +6,46 @@ import Navigation from "../../common/Navigation";
 
 class ScreenComponent extends Component {
 
-     static navigato;
+     static navigator;
      static drawer;
 
 
 
-     static toggleDrawer = () => {
-      
-        Navigation.openMenu()
-    };
-
-  
+   
+ 
+    static navigatorStyle = {
+         navBarHidden: true,
+         navBarBackgroundColor: AppConstant.Color.White
+     };
+      static pop = () => {
+         ScreenComponent.navigator.pop()
+     };
+      static dismissModal = () => {
+         ScreenComponent.navigator.dismissModal()
+     };
+ 
+      static closeDrawer = () => {
+         ScreenComponent.navigator.toggleDrawer({
+             side: 'right',
+             to: 'close'
+         });
+     };
+ 
+      static toggleDrawer = () => {
+         ScreenComponent.navigator.toggleDrawer({
+             side: 'right',
+             animated: true,
+         });
+     };
+ 
+      static resetToRoot = () => {
+         ScreenComponent.navigator.resetTo({screen: "MainScreen"});
+     };
+ 
+ 
+      static popToRoot = () => {
+         ScreenComponent.navigator.popToRoot();
+     };
 
 
      static showActivityIndicator() {

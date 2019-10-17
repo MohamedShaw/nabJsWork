@@ -28,8 +28,7 @@ import AppConstant from "../../constant/Constant";
 export default class CategoryScreen extends ScreenComponent {
     static screenID = "CategoryScreen";
     static screenName = "CategoryScreen";
-    static push = (categoryID, categoryName, categoryIcon) =>  Navigation.push({
-        name: CategoryScreen.screenID,
+    static push = (categoryID, categoryName, categoryIcon) =>  ScreenComponent.navigator.push({screen: CategoryScreen.screenID,
         passProps: { categoryID: categoryID, categoryName: categoryName, categoryIcon: categoryIcon }
     });
     store = new CategoryStore();

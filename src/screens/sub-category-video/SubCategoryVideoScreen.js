@@ -27,8 +27,7 @@ import Navigation from "../../common/Navigation";
 export default class SubCategoryVideoScreen extends ScreenComponent {
     static screenID = "SubCategoryVideoScreen";
     static screenName = "SubCategoryVideoScreen";
-    static push = (object) => Navigation.push({
-        name: SubCategoryVideoScreen.screenID,
+    static push = (object) => ScreenComponent.navigator.push({screen:SubCategoryVideoScreen.screenID,
         passProps: { object: () => object }
     });
 

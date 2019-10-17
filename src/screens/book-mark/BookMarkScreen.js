@@ -28,7 +28,7 @@ import AppConstant from "../../constant/Constant";
 export default class BookMarkScreen extends ScreenComponent {
     static screenID = "BookMarkScreen";
     static screenName = "BookMarkScreen";
-    static push = () =>  Navigation.push({screen: BookMarkScreen.screenID});
+    static push = () =>  ScreenComponent.navigator.push({screen: BookMarkScreen.screenID});
     renderListEmptyComponent = () => {
         return (<Text style={styles.emptyListTitle }>لا يوجد بيانات لعرضها</Text>)
     };

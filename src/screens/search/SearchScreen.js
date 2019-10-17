@@ -22,8 +22,7 @@ import AppConstant from "../../constant/Constant";
 export default class SearchScreen extends ScreenComponent {
     static screenID = "SearchScreen";
     static screenName = "SearchScreen";
-    static push = (keyword) =>  Navigation.push({
-        name: SearchScreen.screenID,
+    static push = (keyword) =>  ScreenComponent.navigator.push({screen:SearchScreen.screenID,
         passProps: {
             keyword: keyword
         }

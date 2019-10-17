@@ -35,7 +35,7 @@ export default class WisdomArchiveScreen extends ScreenComponent {
 
     static screenID = "WisdomArchiveScreen";
     static screenName = "WisdomArchiveScreen";
-    static push = () => Navigation.push({ name: WisdomArchiveScreen.screenID });
+    static push = () => ScreenComponent.navigator.push({screen: WisdomArchiveScreen.screenID });
 
     store = new WisdomStore();
 
