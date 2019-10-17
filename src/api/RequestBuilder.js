@@ -21,45 +21,25 @@ export const OnDownloadProgressFunc = (progressEvent) => { };
 
 
 
-const RequestMethod = {
+export const RequestMethod = {
     GET: 'GET',
     POST: 'POST',
     PUT: 'PUT',
     DELETE: 'DELETE'
 }
 
-export class BaseResponse extends AxiosResponse {
-    static config = new BaseRequestConfig();
-}
-
-
-
-export class BaseRequestConfig extends AxiosRequestConfig {
+const BaseRequestConfig = {
     // lib attr
-    url;
-    method;
-    baseURL;
+    url: null,
+    method: null,
+    baseURL: null,
 
-    headers;
-    params;
-    data;
-    timeout;
-    withCredentials;
-    responseType;
-    xsrfCookieName;
-    xsrfHeaderName;
+    headers: null,
+    params: null,
 
-    maxContentLength;
-    maxRedirects;
-    httpAgent;
-    httpsAgent;
 
-    // new attr
-    responseKey;
-    responseClass;
+    cancelToken: CancelToken
 
-    constructor() {
-    }
 }
 
 
@@ -69,176 +49,138 @@ export class RequestBuilder {
 
     static _url;
     static _baseURL;
-    static _method =  RequestMethod.GET;
+    static _method = RequestMethod.GET;
     static _headers = new Object();
     static _params = new Object();
     static _formData = new FormData();
 
 
-    static _cancelToken = new CancelTokenSource();
+    static _cancelToken = CancelTokenSource;
 
     constructor() {
 
         this._cancelToken = axios.CancelToken.source();
     }
 
-    public setBaseUrl(baseUrl: string) {
+    set_BaseUrl(baseUr) {
         this._baseURL = baseUrl;
         return this;
     }
 
-    public get baseURL() {
+    get_baseURL() {
         return this._baseURL;
     }
 
-    public set url(url: string) {
-        this._url = url;
+    set_url(url) {
+        this._url = BaseRequestConfig.url;
     }
 
-    public setUrl(url: string) {
-        this._url = url;
+    setUrl(url) {
+        console.log("**********************************************************************************************");
+
+        this._url = BaseRequestConfig.url;
+        return this;
+    }
+    get_params() {
+        return this._params;
+    }
+
+    set_setParams(params) {
+        this._params = params;
+    }
+
+    setParam(params) {
+        console.log("******");
+
+        this._params = params;
         return this;
     }
 
-    public get method() {
+    addParam(key, value = null) {
+        console.log("^^^^^", key, value);
+
+        this._params[key] = value;
+        console.log("afet set ", this._params[key] = value
+        );
+
+        return this;
+    }
+
+
+    get_method() {
         return this._method;
     }
 
-    public set method(method: RequestMethod) {
+    set_method(method = new RequestMethod()) {
         this._method = method;
     }
 
-    public setMethod(method: RequestMethod) {
+    setMethod(method = new RequestMethod()) {
         this._method = method;
         return this;
     }
 
-    public get headers() {
+    get_headers() {
         return this._headers;
     }
 
-    public set headers(headers: any) {
+    set_headers(headers) {
         this._headers = headers;
     }
 
-    public addHeader(keyOrObject: string, value: string) {
+    addHeader(keyOrObject, value) {
         this._headers[keyOrObject] = value;
         return this;
     }
 
-    public removeHeader(key: string) {
+    removeHeader(key) {
         Sugar.Object.reject(this._headers, key);
         return this;
     }
 
-    public get params() {
+    get_params() {
         return this._params;
     }
 
-    public set setParams(params: any) {
+    set_setParams(params) {
         this._params = params;
     }
 
-    public setParam(params: any) {
+    setParam(params) {
         this._params = params;
         return this;
     }
 
-    public addParam(key: string, value: any = null) {
-        this._params[key] = value;
-        return this;
-    }
 
 
-    public addFormData(key: string, value: any = null) {
-        this._formData.append(key, value);
-        return this;
-    }
 
-    public removeParam(key: string) {
-        Sugar.Object.reject(this._params, key);
-        return this;
-    }
 
-    public addRequestTransformer(transformer: RequestTransformerFunc) {
-        Sugar.Array.append(this._requestTransformers, transformer);
-        return this;
-    }
+    execute() {
+        var config = BaseRequestConfig;
 
-    public removeRequestTransformer(transformer: RequestTransformerFunc) {
-        Sugar.Array.remove(this._requestTransformers, transformer);
-        return this;
-    }
 
-    public clearRequestTransformers() {
-        Sugar.Array.removeAt(this._requestTransformers, 0, this._requestTransformers.length);
-        return this;
-    }
 
-    public addResponseTransformer(transformer: ResponseTransformerFunc) {
-        Sugar.Array.append(this._responseTransformers, transformer);
-        return this;
-    }
-
-    public removeResponseTransformer(transformer: ResponseTransformerFunc) {
-        Sugar.Array.remove(this._responseTransformers, transformer);
-        return this;
-    }
-
-    public clearResponseTransformers() {
-        Sugar.Array.removeAt(this._responseTransformers, 0, this._responseTransformers.length);
-        return this;
-    }
-
-    public setOnUploadProgress(func: OnUploadProgressFunc) {
-        this._onUploadProgress = func;
-        return this;
-    }
-
-    public unsetOnUploadProgress() {
-        this._onUploadProgress = undefined;
-        return this;
-    }
-
-    public setOnDownloadProgress(func: OnDownloadProgressFunc) {
-        this._onDownloadProgress = func;
-        return this;
-    }
-
-    public unsetOnDownloadProgress() {
-        this._onDownloadProgress = undefined;
-        return this;
-    }
-
-    public execute<T>(): AxiosPromise<T> {
-        var config: BaseRequestConfig = new BaseRequestConfig();
-        config.url = this._url;
+        config.url = 'http://alhudagroup-tr.com/API/';
         config.method = this._method.toString();
-        config.headers = this._headers;
-        if (this._formData['_parts'].length !== 0) {
-            config.data = this._formData
-        }
-        else {
-            switch (this._method) {
-                case RequestMethod.GET:
-                case RequestMethod.DELETE:
-                    config.params = this._params;
-                    break;
-                case RequestMethod.POST:
-                    config.data = qs.stringify(this._params);
-                    break;
-                case RequestMethod.PUT:
-                    config.data = this._params;
-                    break;
-            }
-        }
-        config.transformRequest = this._requestTransformers;
-        config.transformResponse = this._responseTransformers;
-        config.onUploadProgress = this._onUploadProgress;
-        config.onDownloadProgress = this._onDownloadProgress;
-        config.cancelToken = this._cancelToken!.token;
+        config.headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
 
-        var request = RequestManager.shared.axios.request<T>(config);
+        switch (this._method) {
+            case RequestMethod.GET:
+            case RequestMethod.DELETE:
+                config.params = this._params;
+                break;
+            case RequestMethod.POST:
+                config.data = qs.stringify(this._params);
+                break;
+            case RequestMethod.PUT:
+                config.data = this._params;
+                break;
+        }
+
+
+        config.cancelToken = this._cancelToken.token;
+
+        var request = RequestManager.axios.request(config);
 
         return request;
     }

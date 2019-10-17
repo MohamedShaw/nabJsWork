@@ -1,4 +1,4 @@
-const getCategoryImage = (id: number) => {
+const getCategoryImage = (id) => {
      switch (id) {
         case 13: {
             return require("../assets/images/13.png")

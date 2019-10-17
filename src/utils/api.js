@@ -3,6 +3,8 @@ const DEFAULT_HEADERS = {
 };
 const IS_SUCCESS = response => response.status >= 200 && response.status < 300;
 const IS_UNAUTHORIZED = response => response.status === 401;
+export const BASE_API = "http://alhudagroup-tr.com/API"
+export const CONTENT_TYPE = {'Content-Type':'application/x-www-form-urlencoded'}
 
 function validateResponse(response = {}, options = {}) {
   const retry = response.clone()

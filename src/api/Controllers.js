@@ -1,72 +1,191 @@
 import { RequestBuilder, RequestMethod } from "./RequestBuilder";
 import { ApiResponse } from "./ApiResponse";
+import Axios from "axios";
+
+import { BASE_API, CONTENT_TYPE } from "../utils/api";
 
 
 
+export const Categories = async (id) => {
+    try {
+        const response = await Axios.get(`${BASE_API}/getCategories.php`, {
+            params: {
+                'id': id
+            },
+            headers: {
+                CONTENT_TYPE
+            }
+        })
 
 
-export const Categories = (id) => {
-    return new RequestBuilder()
-        .setUrl('/getCategories.php')
-        .addParam('id', id)
-        .setMethod(RequestMethod.GET)
-        .execute<ApiResponse>();
-
-}
-export const CategoriesById = (id) => {
-    return new RequestBuilder()
-        .setUrl('/getTopic.php')
-        .addParam('id', id)
-        .setMethod(RequestMethod.GET)
-        .execute<ApiResponse>();
-
-}
-
-
-export const Wisdom = () => {
-
-    function get() {
-        return new RequestBuilder()
-            .setUrl('/getTopWisdomList.php')
-            .setMethod(RequestMethod.GET)
-            .execute<ApiResponse>();
+    } catch (error) {
+        if (!error.response) {
+            // ScreenComponent.showToast('تأكد من الاتصال بالانترنت');
+            return Promise.reject(error);
+        }
+        else {
+            return Promise.reject(error);
+        }
     }
 
 
-    function getSingle() {
-        return new RequestBuilder()
-            .setUrl('/getSingleWisdomNew.php')
-            .addParam("id", 0)
-            .setMethod(RequestMethod.GET)
-            .execute<ApiResponse>();
+}
+export const CategoriesById = async (id) => {
+
+    try {
+        const response = await Axios.get(`${BASE_API}/getTopic.php`, {
+            params: {
+                'id': id
+            },
+            headers: {
+                CONTENT_TYPE
+            }
+        })
+
+
+    } catch (error) {
+        if (!error.response) {
+            // ScreenComponent.showToast('تأكد من الاتصال بالانترنت');
+            return Promise.reject(error);
+        }
+        else {
+            return Promise.reject(error);
+        }
     }
-}
 
-export const New = () => {
-    return new RequestBuilder()
-        .setUrl('/getNewAlert.php')
-        .setMethod(RequestMethod.GET)
-        .execute<ApiResponse>();
+
 
 }
 
-export const Questions = (id) => {
-    return new RequestBuilder()
-        .setUrl('/getByCatPaging.php')
-        .setMethod(RequestMethod.POST)
-        .addParam("category", id)
-        .addParam("column", "all")
-        .addParam("i_page", 1)
-        .addParam("i_size", 15)
-        .execute<ApiResponse>();
+
+export const getWisdomList = async () => {
+    try {
+        const response = await Axios.get(`${BASE_API}/getTopWisdomList.php`, {
+
+            headers: {
+                CONTENT_TYPE
+            }
+        })
+
+
+    } catch (error) {
+        if (!error.response) {
+            // ScreenComponent.showToast('تأكد من الاتصال بالانترنت');
+            return Promise.reject(error);
+        }
+        else {
+            return Promise.reject(error);
+        }
+    }
+
+}
+export const getSingle = async () => {
+
+    try {
+        const response = await Axios.get(`${BASE_API}/getSingleWisdomNew.php`, {
+            params: {
+                // id: 0
+            },
+            headers: {
+                CONTENT_TYPE
+            }
+        })
+        return response;
+
+    } catch (error) {
+        if (!error.response) {
+            // ScreenComponent.showToast('تأكد من الاتصال بالانترنت');
+            return Promise.reject(error);
+        }
+        else {
+            return Promise.reject(error);
+        }
+    }
+
 
 }
 
-export const SubCategory = (id) => {
-    return new RequestBuilder()
-        .setUrl('/getTopWisdom.php')
-        .setMethod(RequestMethod.GET)
-        .addParam("id", id)
-        .execute<ApiResponse>();
+
+export const getNew = async () => {
+
+    try {
+        const response = await Axios.get(`${BASE_API}/getNewAlert.php`, {
+
+            headers: {
+                CONTENT_TYPE
+            }
+        })
+
+
+    } catch (error) {
+        if (!error.response) {
+            // ScreenComponent.showToast('تأكد من الاتصال بالانترنت');
+            return Promise.reject(error);
+        }
+        else {
+            return Promise.reject(error);
+        }
+    }
+
+
+}
+
+export const Questions = async (id) => {
+
+
+    try {
+        const response = await Axios.post(`${BASE_API}/getByCatPaging.php`, {
+            params: {
+                "category": id,
+                "column": "all",
+                "i_page": 1,
+                "i_size": 15
+            },
+
+            headers: {
+                CONTENT_TYPE
+            }
+        })
+
+
+    } catch (error) {
+        if (!error.response) {
+            // ScreenComponent.showToast('تأكد من الاتصال بالانترنت');
+            return Promise.reject(error);
+        }
+        else {
+            return Promise.reject(error);
+        }
+    }
+
+
+
+}
+
+export const SubCategory = async (id) => {
+
+    try {
+        const response = await Axios.get(`${BASE_API}/getTopWisdom.php`, {
+            params: {
+                "id": id
+            }
+            ,
+
+            headers: {
+                CONTENT_TYPE
+            }
+        })
+
+
+    } catch (error) {
+        if (!error.response) {
+            // ScreenComponent.showToast('تأكد من الاتصال بالانترنت');
+            return Promise.reject(error);
+        }
+        else {
+            return Promise.reject(error);
+        }
+    }
+
 
 }

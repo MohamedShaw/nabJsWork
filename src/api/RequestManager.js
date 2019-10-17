@@ -1,22 +1,19 @@
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-
-import {ApiResponse} from ".";
-import NotificationManager from "../utils/NotificationManager";
-import ScreenComponent from "../screens/_base/screen-component";
+// import ScreenComponent from "../screens/_base/screen-component";
 
 export class RequestManager {
-    private static _shared: RequestManager;
+    static _shared = new RequestManager();
 
-    private _axiosInstance!: AxiosInstance;
+    static _axiosInstance = AxiosInstance;
 
-    public static get shared(): RequestManager {
+    shared() {
         if (!this._shared) {
             let shared = new RequestManager();
 
             // Create an instance using the config defaults provided by the library
             // At this point the timeout config value is `0` as is the default for the library
-            let axiosInstance: AxiosInstance = axios.create();
+            let axiosInstance = axios.create();
 
             // Override timeout default for the library
             // Now all requests will wait 10 seconds before timing out
@@ -50,33 +47,30 @@ export class RequestManager {
         return this._shared
     }
 
-    public get axios(): AxiosInstance {
-        return this._axiosInstance;
-    }
 
 
     constructor() {
     }
 
-    private _beforeExecutingRequestInterceptor;
+    static _beforeExecutingRequestInterceptor;
 
-    private beforeExecutingRequestSuccess(config: AxiosRequestConfig) {
+    static beforeExecutingRequestSuccess(config = new AxiosRequestConfig()) {
         return config;
     }
 
-    private beforeExecutingRequestError(error) {
+    static beforeExecutingRequestError(error) {
         return Promise.reject(error);
     }
 
-    private _afterReceivingResponseInterceptor;
+    static _afterReceivingResponseInterceptor;
 
-    private afterReceivingResponseSuccess(response: AxiosResponse<ApiResponse>) {
+    static afterReceivingResponseSuccess(response = new AxiosResponse()) {
         return response;
     }
 
-    private afterReceivingResponseError(error) {
+    static afterReceivingResponseError(error) {
         if (!error.response) {
-            ScreenComponent.showToast('تأكد من الاتصال بالانترنت');
+            // ScreenComponent.showToast('تأكد من الاتصال بالانترنت');
             return Promise.reject(error);
         }
         else {

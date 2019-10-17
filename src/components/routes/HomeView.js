@@ -10,8 +10,10 @@ import LinearGradient from 'react-native-linear-gradient'
 import Button from '../theme/ButtonView'
 import { Icons, Images } from '../../styles/theme'
 import styles from '../../styles/routes/HomeViewStyles'
+import {Categories, CategoriesById, getSingle,getWisdomList, getNew} from "../../api/Controllers";
 
 @inject('appState')
+@inject('MainStore')
 @observer
 export default class HomeView extends Component {
   static options() {
@@ -35,7 +37,16 @@ export default class HomeView extends Component {
     };
   }
 
+  componentDidMount(){
+    console.log("Fetch ==>>");
+    this.props.MainStore.getWisdomRequest()
+    const cat =this.props.MainStore.getCategory
+    console.log("cat -->>", cat);
+    
+    
+  }
   render() {
+    
     return (
       <View style={styles.bar}>
         <LinearGradient

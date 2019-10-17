@@ -8,11 +8,18 @@ import stores from '../../stores';
 import HomeView from './HomeView';
 import LoginView from './LoginView';
 import RegisterView from './RegisterView';
+import MainScreen from "../../screens/main/MainScreen";
+import Splash from "../../screens/main/Splash";
+
+
 
 export default routes = {
   'App.Home': HomeView,
   'App.Login': LoginView,
   'App.Register': RegisterView,
+  'MainScreen':MainScreen,
+  'Splash':Splash
+
 }
 
 // Register all screens of the app (including internal ones)

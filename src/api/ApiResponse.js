@@ -1,6 +1,6 @@
 import {AxiosPromise} from "axios";
 import {RequestBuilder, RequestMethod} from "./RequestBuilder";
-import Category from "../models/Category";
+// import Category from "../models/Category";
 
 
 export class ApiResponseStatus {
@@ -20,7 +20,7 @@ export class ApiResponsePagination {
 export class ApiResponse {
      static status =new ApiResponseStatus();
      static pagination = new ApiResponsePagination();
-     static categoryList = [Category];
+    //  static categoryList = [Category];
      
 }
 
