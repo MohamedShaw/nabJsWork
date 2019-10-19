@@ -18,7 +18,7 @@ import Navigation from "../../common/Navigation";
 export default class Header extends PureComponent{
 
     onBackButtonClicked = () => {
-        this.props.isBackToRoot ? Navigation.setStackRoot() : Navigation.pop()
+        this.props.isBackToRoot ? ScreenComponent.popToRoot() : ScreenComponent.pop()
     };
 
     onSideMenuButtonClicked = () => {

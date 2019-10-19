@@ -6,14 +6,13 @@ console.ignoredYellowBox = ['Remote debugger', 'Warning: isMounted(...) is depre
 
 export default class App {
   constructor() {
-   
     Navigation.startSingleScreenApp({
       screen: {
         screen: "Splash",
-        navigationBarStyle : {navBarHidden: true },
-
+        navigatorStyle:{
+          navBarHidden:true
+        }
       },
-    
     });
   }
 }

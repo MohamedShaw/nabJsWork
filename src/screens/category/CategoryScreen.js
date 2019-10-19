@@ -11,16 +11,16 @@ import { View, StyleSheet, Text, TextStyle, Image } from 'react-native';
 import ScreenComponent from "../_base/screen-component";
 import Navigation from '../../common/Navigation';
 // import CategoryListView from "../../components/category/CategoryListView";
-// import PatternBackground from "../../components/general/PatternBackground";
-// import Header from "../../components/general/Header";
+import PatternBackground from "../../components/general/PatternBackground";
+import Header from "../../components/general/Header";
 // import SubCategoryScreen from "../sub-category/SubCategoryScreen";
 // import CategoryStore from "../../strores/CategoryStore";
-// import { vw, vh } from "../../constant/UnitDim"
-// import { observer } from "mobx-react";
+import { vw, vh } from "../../constant/UnitDim"
+import { observer } from "mobx-react";
 import AppConstant from "../../constant/Constant";
-// import Search from "../../components/general/Search";
-// import DrawerComponent from "../../components/general/DrawerComponent";
-// import getCategoryImage from "../../utils/Image";
+import Search from "../../components/general/Search";
+import DrawerComponent from "../../components/general/DrawerComponent";
+import getCategoryImage from "../../utils/Image";
 
 
 
@@ -64,7 +64,7 @@ export default class CategoryScreen extends ScreenComponent {
 
     render() {
         return (
-            // <DrawerComponent>
+            <DrawerComponent>
                 <View style={styles.container}>
                     {/* <PatternBackground />
                     <Header showBackButton={true} title={this.props.categoryName} />
@@ -80,7 +80,7 @@ export default class CategoryScreen extends ScreenComponent {
                         pullToRefreshIndicatorVisible={this.store.getPullToRefreshIndicatorStatues}
                     /> */}
                 </View>
-            // </DrawerComponent>
+            </DrawerComponent>
         );
     }
 }

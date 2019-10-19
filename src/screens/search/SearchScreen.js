@@ -10,11 +10,11 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import ScreenComponent from "../_base/screen-component";
 import AppConstant from "../../constant/Constant";
-// import PatternBackground from "../../components/general/PatternBackground";
-// import Header from "../../components/general/Header";
-// import Form from "../../components/advanced-search/Form";
+import PatternBackground from "../../components/general/PatternBackground";
+import Header from "../../components/general/Header";
+import Form from "../../components/advanced-search/Form";
 // import SearchResultScreen from "../search-result/SearchResultScreen";
-// import DrawerComponent from "../../components/general/DrawerComponent";
+import DrawerComponent from "../../components/general/DrawerComponent";
 
 
 
@@ -33,11 +33,11 @@ export default class SearchScreen extends ScreenComponent {
 
     render() {
         return (
-            // <DrawerComponent>
+            <DrawerComponent>
                 <View style={styles.container}>
-                    {/* <PatternBackground/>
+                    <PatternBackground/>
                     <Header showBackButton={true} title={"البحث"}/>
-                    <Form keyword={this.props.keyword} onSendButtonClciked={this.onSendButtonClciked}/> */}
+                    <Form keyword={this.props.keyword} onSendButtonClciked={this.onSendButtonClciked}/>
                 </View>
             // </DrawerComponent>
         );

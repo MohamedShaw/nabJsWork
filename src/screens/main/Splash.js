@@ -34,6 +34,9 @@ export default class Splash extends ScreenComponent {
             Navigation.startSingleScreenApp({
                 screen: {
                     screen: MainScreen.screenID,
+                    navigatorStyle:{
+                        navBarHidden:true
+                      }
                 },
                 drawer: {
                     right: {
