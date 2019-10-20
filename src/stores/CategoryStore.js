@@ -1,15 +1,19 @@
-import {action, computed, observable} from "mobx";
+import { action, computed, observable } from "mobx";
 import Category from "../models/Category";
 import * as API from "../api";
 import ScreenComponent from "../screens/_base/screen-component";
 import ListViewStore from "./ListViewStore";
+import { Categories } from "../api/Controllers";
+class CategoryStore extends ListViewStore {
+  
+    
 
-class CategoryStore extends ListViewStore{
+    @observable category = [];
 
-    @observable category= Array(Category);
-
-    @action  setCategory = (data) => {
+    @action setCategory = (data) => {
         if (data.length !== 0) {
+            console.log("data not equal to 0", data);
+            
             this.category = data
         }
         else {
@@ -17,44 +21,47 @@ class CategoryStore extends ListViewStore{
         }
     };
 
-    @computed  get getCategory () {
+    @computed get getCategory() {
         return this.category
     };
 
-    @action  getSubCategoryPageRequest = (categoryID) => {
+    @action getSubCategoryPageRequest = (categoryID) => {
         ScreenComponent.showActivityIndicator();
-        return API.Controllers.Categories.get(categoryID)
+        return Categories(categoryID)
     };
 
-    @action  firstPageRequest = (categoryID) => {
-        ScreenComponent.showActivityIndicator();
-        API.Controllers.Categories.get(categoryID)
+    @action 
+    firstPageRequest = (categoryID) => {
+        // ScreenComponent.showActivityIndicator();
+        Categories(categoryID)
             .then(response => this.handelSuccessFirstPageRequest(response))
             .catch(error => this.handelFailedFirstPageRequest(error))
     };
-     handelSuccessFirstPageRequest = (response) => {
+    handelSuccessFirstPageRequest = (response) => {
+        console.log("res in store -->>", response.data.categoryList);
+        
         ScreenComponent.hideActivityIndicator();
         this.setCategory(response.data.categoryList)
     };
-     handelFailedFirstPageRequest = (error) => {
+    handelFailedFirstPageRequest = (error) => {
         ScreenComponent.hideActivityIndicator()
         this.setCategory([])
     };
 
 
-    @action  pullToRefreshRequest = (categoryID) => {
+    @action pullToRefreshRequest = (categoryID) => {
         this.showPullToRefreshIndicator();
-        API.Controllers.Categories.get(categoryID)
+        Categories(categoryID)
             .then(response => this.handelSuccessPullToRefreshRequest(response))
             .catch(error => this.handelFailedPullToRefreshRequest(error))
 
     };
 
-     handelSuccessPullToRefreshRequest = (response) => {
+    handelSuccessPullToRefreshRequest = (response) => {
         this.hidePullToRefreshIndicator();
         this.setCategory(response.data.categoryList)
     };
-     handelFailedPullToRefreshRequest = (error) => {
+    handelFailedPullToRefreshRequest = (error) => {
         this.hidePullToRefreshIndicator();
     };
 
@@ -62,4 +69,4 @@ class CategoryStore extends ListViewStore{
 
 }
 
-export default CategoryStore
+export default new CategoryStore()

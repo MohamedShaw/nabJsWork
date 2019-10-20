@@ -7,6 +7,8 @@ import { BASE_API, CONTENT_TYPE } from "../utils/api";
 
 
 export const Categories = async (id) => {
+    console.log("*****************************");
+    
     try {
         const response = await Axios.get(`${BASE_API}/getCategories.php`, {
             params: {
@@ -16,6 +18,9 @@ export const Categories = async (id) => {
                 CONTENT_TYPE
             }
         })
+        console.log("response -->>", response);
+        
+        return response;
 
 
     } catch (error) {

@@ -11,7 +11,20 @@ import RegisterView from './RegisterView';
 import MainScreen from "../../screens/main/MainScreen";
 import Splash from "../../screens/main/Splash";
 import SideMenuScreen from "../../screens/side-menu/SideMenuScreen";
-
+import TodayWisdomScreen from "../../screens/today-wisdom/TodayWisdomScreen";
+import WisdomArchiveScreen from "../../screens/wisdom-archive/WisdomArchiveScreen";
+import CategoryScreen from "../../screens/category/CategoryScreen";
+import SubCategoryScreen from "../../screens/sub-category/SubCategoryScreen";
+import ContactUsScreen from "../../screens/contact-us/ContactUsScreen";
+import NewScreen from '../../screens/new/NewScreen';
+import NewFatwaScreen from '../../screens/new-fatwa/NewFatwaScreen';
+import QuestionScreen from '../../screens/question/QuestionScreen';
+import SearchScreen from '../../screens/search/SearchScreen';
+import SoundChannelScreen from '../../screens/sound-channel/SoundChannelScreen';
+import SubCategoryTextScreen from '../../screens/sub-category-text/SubCategoryTextScreen';
+import SubCategoryVideoScreen from '../../screens/sub-category-video/SubCategoryVideoScreen';
+import VideoChannelScreen from '../../screens/video-channel/VideoChannelScreen';
+import BookMarkScreen from '../../screens/book-mark/BookMarkScreen';
 
 export default routes = {
   'App.Home': HomeView,
@@ -19,7 +32,22 @@ export default routes = {
   'App.Register': RegisterView,
   'MainScreen':MainScreen,
   'Splash':Splash,
-  "SideMenuScreen":SideMenuScreen
+  "SideMenuScreen":SideMenuScreen,
+  "TodayWisdomScreen":TodayWisdomScreen,
+  "WisdomArchiveScreen":WisdomArchiveScreen,
+  "CategoryScreen":CategoryScreen,
+  "SubCategoryScreen":SubCategoryScreen,
+  "ContactUsScreen":ContactUsScreen,
+  "NewScreen":NewScreen,
+  "NewFatwaScreen":NewFatwaScreen,
+  "QuestionScreen":QuestionScreen,
+  "SearchScreen":SearchScreen,
+  "SoundChannelScreen":SoundChannelScreen,
+  "SubCategoryTextScreen":SubCategoryTextScreen,
+  "SubCategoryVideoScreen":SubCategoryVideoScreen,
+  "VideoChannelScreen":VideoChannelScreen,
+  "BookMarkScreen":BookMarkScreen
+
 
 }
 

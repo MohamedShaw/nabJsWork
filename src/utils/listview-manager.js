@@ -1,15 +1,15 @@
-import {ApiResponse, ApiResponsePagination, RequestBuilder, RequestMethod} from "../api";
-import {AxiosPromise} from "axios";
+import Axios, { AxiosPromise } from "axios";
+import { BASE_API, CONTENT_TYPE } from "../utils/api";
 
-const  paginationInformation = {
-    i_current_page,
-    i_per_page,
-    i_total_pages,
-    i_total_objects,
-    i_items_on_page,
+const paginationInformation = {
+    i_current_page: 1,
+    i_per_page: 1,
+    i_total_pages: null,
+    i_total_objects: null,
+    i_items_on_page: null,
 }
 
-export class ListViewManager {
+class ListViewManager {
 
     static pageNumber;
     static pageCount;
@@ -19,18 +19,19 @@ export class ListViewManager {
     static totalItem;
     static url;
     static requestMethod;
+
     static params = new Object();
 
-    constructor() {
-    }
 
-    firstPage = () => {
+    firstPage = (id, parentID) => {
+        console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+
         this.setPageNumber(1);
-        return this.requestBuilder()
+        return this.requestBuilder(id)
     };
     lastPage = () => {
         this.setPageNumber(-1);
-        return this.requestBuilder()
+        // return this.requestBuilder()
     };
     nextPage = () => {
         if (this.allowGoToNextPage()) {
@@ -53,25 +54,17 @@ export class ListViewManager {
         return this;
     };
 
-    addParam(key, value) {
+
+    addParam(key, value = null) {
+       
         this.params[key] = value;
         return this
     }
-
-    removeParam(key) {
-        delete this.params[key];
-        return this
-    }
-
     setPageNumber = (pageNumber) => {
         this.pageNumber = pageNumber;
         return this
     };
 
-    setRequestMethod = (requestMethod) => {
-        this.requestMethod = requestMethod;
-        return this
-    };
 
     get getPageNumber() {
         return this.pageNumber
@@ -79,7 +72,6 @@ export class ListViewManager {
 
     setPageCount = (pageCount) => {
         this.pageCount = pageCount;
-        this.addParam('i_size', this.pageCount);
         return this
     };
 
@@ -147,14 +139,64 @@ export class ListViewManager {
         return this.getPageNumber > 1;
     };
 
-    requestBuilder () {
-        return new RequestBuilder()
-            .setUrl(this.url)
-            .setMethod(this.requestMethod ? RequestMethod.POST : RequestMethod.GET)
-            .setParam(this.params)
-            .addParam('i_page', this.getPageNumber)
-            .execute();
+
+    async requestBuilder(id) {
+        console.log("*************", id, this.requestMethod);
+        const idCat =id;
+
+        if (this.requestMethod) {
+            console.log("if 888888");
+            
+            try {
+
+                const res = await Axios.post(`${BASE_API}/${this.url}`, {
+                    params: {
+                        'category': id,
+                        'i_page': this.getPageNumber
+                    },
+                    headers: {
+                        CONTENT_TYPE
+                    }
+                })
+                console.log("response -->>>", res);
+                return res;
+
+
+            } catch (error) {
+                console.log("error ->>", JSON.parse(JSON.stringify(error)));
+
+            }
+
+        } else {
+            console.log("idCat" , idCat);
+            
+            try {
+
+                const res = await Axios.get(`${BASE_API}/${this.url}`, {
+                    params: {
+                        'category': idCat,
+
+                        "column": 'all',
+                        'i_page': this.getPageNumber,
+                        'i_size': this.getPageCount
+                    },
+                    headers: {
+                        CONTENT_TYPE
+                    }
+                })
+                console.log("response -->>>", res);
+                return res;
+
+
+            } catch (error) {
+                console.log("error ->>", JSON.parse(JSON.stringify(error)));
+
+            }
+        }
+       
     }
 
 
 }
+
+export default new ListViewManager()

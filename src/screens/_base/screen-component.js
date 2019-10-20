@@ -6,6 +6,11 @@ import Navigation from "../../common/Navigation";
 
 class ScreenComponent extends Component {
 
+
+    componentDidMount(){
+    console.log("HHHHHHHHHHHHHHHسسس")
+    }
+
      static navigator;
      static drawer;
 
@@ -25,18 +30,20 @@ class ScreenComponent extends Component {
      };
  
       static closeDrawer = () => {
-         ScreenComponent.navigator.toggleDrawer({
+         this.props.navigator.toggleDrawer({
              side: 'right',
              to: 'close'
          });
      };
  
-      static toggleDrawer = () => {
+     static toggleDrawer = () => {
+         console.log("***********", ScreenComponent.navigator);
+         
          ScreenComponent.navigator.toggleDrawer({
-             side: 'right',
-             animated: true,
-         });
-     };
+            side: 'right',
+            animated: true,
+        });
+    };;
  
       static resetToRoot = () => {
          ScreenComponent.navigator.resetTo({screen: "MainScreen"});
